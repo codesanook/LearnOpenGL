@@ -1,40 +1,38 @@
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-
-123 
-456
-789
-
-
-
-
+#include <iostream>
+using namespace std;
 
 int main(void)
 {
-    GLFWwindow* window;
+	GLFWwindow* window;
 
-    /* Initialize the library */
-    if (!glfwInit())
-        return -1;
+	/* Initialize the library */
+	if (!glfwInit())
+		return -1;
 
-    /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-    if (!window)
-    {
-        glfwTerminate();
-        return -1;
-    }
+	/* Create a windowed mode window and its OpenGL context */
+	window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+	if (!window)
+	{
+		glfwTerminate();
+		return -1;
+	}
 
-    /* Make the window's context current */
-    glfwMakeContextCurrent(window);
+	/* Make the window's context current */
+	glfwMakeContextCurrent(window);
 
-    /* Loop until the user closes the window */
-    while (!glfwWindowShouldClose(window))
-    {
-        /* Render here */
-        glClear(GL_COLOR_BUFFER_BIT);
+	if (glewInit() != GLEW_OK) {
+		cout << "Error!" << endl;
+	}
+
+		cout << glGetString(GL_VERSION) << endl;
+
+	/* Loop until the user closes the window */
+	while (!glfwWindowShouldClose(window))
+	{
+		/* Render here */
+		glClear(GL_COLOR_BUFFER_BIT);
 
 		glBegin(GL_TRIANGLES);
 		glVertex2f(-0.5f, -0.5f);
@@ -42,13 +40,13 @@ int main(void)
 		glVertex2f(0.5f, -0.5f);
 		glEnd();
 
-        /* Swap front and back buffers */
-        glfwSwapBuffers(window);
+		/* Swap front and back buffers */
+		glfwSwapBuffers(window);
 
-        /* Poll for and process events */
-        glfwPollEvents();
-    }
+		/* Poll for and process events */
+		glfwPollEvents();
+	}
 
-    glfwTerminate();
-    return 0;
+	glfwTerminate();
+	return 0;
 }
